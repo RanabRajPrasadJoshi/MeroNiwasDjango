@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="{% static 'Assets/logo.png'%}"
+      type="image/x-icon"
+    />
+    <title>
+      Mero Niwas - Sajilo Khoj, Sajilo Basai sangei Bharosa, Suvidha Ra Aaram
+    </title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html">
+            <img src="{% static 'Assets/logo.png'%}" alt="Error loading" />
+
+            <h2 id="ttxt">Mero</h2>
+            <h2 id="txt">Niwas</h2>
+          </a>
+        </div>
+        <div class="naav">
+          <div class="nav">
+            <h4 class="nav-item"><a href="{% url 'home' %}">Home</a></h4>
+            <h4 class="nav-item"><a href="#">Product</a></h4>
+            <h4 class="nav-item">
+              <a href="{% url 'ContactUs' %}">Contact us</a>
+            </h4>
+            <h4 class="nav-item"><a href="#">About us</a></h4>
+          </div>
+          <div class="log">
+            <button type="submit" class="button nav-item" onclick="login()">
+              Login
+            </button>
+            <button type="submit" class="button nav-item" onclick="register()">
+              Register
+            </button>
+          </div>
+        </div>
+        <div class="toggle-DropDown">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <div class="main">{% block main_content %} {% endblock %}</div>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>About Us</h3>
+          <p>
+            Founded in 2010, Mero Niwas is a real estate firm specializing in
+            pairing dedicated agents with clients to offer a unique experience.
+          </p>
+        </div>
+        <div class="footer-section links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section social">
+          <h3>Follow Us</h3>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Mero Niwas. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/script.js'%}"></script>
+  </body>
+</html>

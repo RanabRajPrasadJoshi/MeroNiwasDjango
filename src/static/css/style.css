@@ -1,0 +1,249 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #e0f7fa;
+}
+.navbar {
+  display: flex;
+  box-sizing: border-box; /*optional */
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  background-color: #264452;
+  border: 2px solid 264452;
+  padding: 2vh;
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+}
+
+.logo,
+.nav,
+.log {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  margin-left: 2vw;
+}
+.naav {
+  display: flex;
+  justify-content: center;
+  width: 65%;
+  justify-content: space-between;
+  text-align: center;
+  left: 35%;
+}
+.log {
+  margin-right: 2vw;
+}
+.nav {
+  gap: 2em;
+}
+.logo a img {
+  width: 4em;
+  height: 4em;
+}
+
+.log button {
+  margin: 0vw 0.2vw;
+}
+.logo a h2 {
+  margin-left: 1vw;
+  color: #aec2cb;
+}
+.logo a {
+  display: flex;
+  text-decoration: none;
+}
+
+#txt {
+  color: #1b8fc3;
+  margin-left: 0px;
+}
+.nav h4 a {
+  color: #aec2cb;
+  text-decoration: none;
+}
+.nav h4 a:hover {
+  color: #1b8fc3;
+  opacity: 40%;
+}
+.nav h4 a:active {
+  border-color: #1b8fc3;
+  text-decoration: underline;
+}
+
+.button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.3em 1em;
+  border: #aec2cb solid 0.15em;
+  border-radius: 0.5em;
+  color: #aec2cb;
+  /* font-size: 1.5em; */
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  /* transition: border 300ms, color 300ms; */
+  /* user-select: none; */
+}
+
+.button p {
+  z-index: 1;
+}
+
+.button:hover {
+  color: #1b8fc3;
+  opacity: 60%;
+}
+
+.button:active {
+  border-color: #1b8fc3;
+}
+
+.button::after,
+.button::before {
+  content: "";
+  position: absolute;
+  width: 6em;
+  aspect-ratio: 1;
+  background: #70c3e9;
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.button::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+.button::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+.button:hover:before {
+  transform: translateX(-1em);
+}
+
+.button:hover:after {
+  transform: translateX(1em);
+}
+
+.button:active:before,
+.button:active:after {
+  background: #1b8fc3;
+}
+
+.toggle-DropDown {
+  display: none;
+  cursor: pointer;
+  margin: auto;
+  margin-right: 5vw;
+  /* border: 2px solid black; */
+  padding: 1vw;
+}
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: #aec2cb;
+}
+.toggle-DropDown:hover {
+  color: #1b8fc3;
+  opacity: 60%;
+}
+
+@media (max-width: 864px) {
+  .toggle-DropDown {
+    display: block;
+    cursor: pointer;
+  }
+  .toggle-DropDown.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .toggle-DropDown.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .toggle-DropDown.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .naav {
+    position: fixed;
+    left: -100%;
+    top: 80px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #264452;
+    width: 100%;
+    /* text-align: center; */
+    transition: 0.3s;
+    z-index: 999;
+  }
+  .nav {
+    display: block;
+    text-align: center;
+  }
+  .log {
+    /* display: block; */
+    justify-content: center;
+    margin: 10px;
+  }
+  .nav-item {
+    margin: 16px 0;
+  }
+  .naav.active {
+    left: 0;
+  }
+}
+
+footer {
+  background-color: #264452;
+  color: #aec2cb;
+  padding: 2em 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+  gap: 20vw;
+}
+
+.footer-section {
+  max-width: 300px;
+}
+
+.footer-section h3 {
+  color: #ffffff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 1em 0;
+}
+
+.footer-section ul li a {
+  color: #aec2cb;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  color: #1b8fc3;
+}
+
+.footer-bottom {
+  border-top: 1px solid #aec2cb;
+  padding-top: 1em;
+}
