@@ -1,0 +1,32 @@
+{% extends 'layout.html' %} {% load static %} {% block main_content %}
+<link rel="stylesheet" href="{% static 'css/Product.css' %}" />
+<main>
+  <div class="search-filter">
+    <form method="GET" action="{% url 'search' %}">
+      <input type="text" name="q" placeholder="Search for rooms..." />
+      <select name="category">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+        <option value="{{ category.name }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="room-listings">
+    {% for room in rooms %}
+    <div class="room-card">
+      <img src="{{ room.image.url }}" alt="Room Image" />
+      <div class="room-info">
+        <h3>{{ room.title }}</h3>
+        <p>{{ room.description }}</p>
+        <p>Location: {{ room.location }}</p>
+        <p>Price: ${{ room.price }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+
+{% endblock %}
