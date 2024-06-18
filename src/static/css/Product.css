@@ -9,7 +9,10 @@
 
 .search-filter {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #c4d7d7;
 }
 
 .category-area {
@@ -95,4 +98,29 @@
 .category-card .btn:hover {
   background-color: #1b8fc3;
   color: #ffffff;
+}
+
+.room-listings{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px 4vw;
+  gap: 4vw;
+}
+
+.room-card{
+  background: #c4d7d7;
+  padding: 1vw;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+}
+.room-card img{
+  aspect-ratio: 20 / 17;
+  border-radius: 10px;
 }
