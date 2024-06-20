@@ -14,6 +14,13 @@ def show_product(request):
 def show_contactus(request):
     return render(request, 'home/ContactUs.html')
 
+def show_login(request):
+    return render(request, 'home/login.html')
+def show_selectRegister(request):
+    return render(request, 'home/selectregister.html')
+def show_registerbroker(request):
+    return render(request, 'home/registerbroker.html')
+
 def search(request):
     query = request.GET.get('q')
     category = request.GET.get('category')
