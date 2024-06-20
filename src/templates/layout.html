@@ -24,7 +24,7 @@
     <header>
       <nav class="navbar">
         <div class="logo">
-          <a href="index.html">
+          <a href="{% url 'home' %}">
             <img src="{% static 'Assets/logo.png'%}" alt="Error loading" />
 
             <h2 id="ttxt">Mero</h2>
@@ -41,12 +41,16 @@
             <h4 class="nav-item"><a href="#">About us</a></h4>
           </div>
           <div class="log">
+            <a href="{% url 'login' %}" class="anker">
             <button type="submit" class="button nav-item" onclick="login()">
               Login
             </button>
-            <button type="submit" class="button nav-item" onclick="register()">
+          </a>
+          <a href="{%url 'selectregister'%}" class="anker">
+            <button type="submit" class="button nav-item" >
               Register
             </button>
+          </a>
           </div>
         </div>
         <div class="toggle-DropDown">
@@ -90,6 +94,13 @@
       </div>
     </footer>
 
-    <script src="{% static 'js/script.js'%}"></script>
+    <script src="{% static 'js/script.js'%}">
+      function login() {
+  window.location.href = "";
+}
+function register() {
+  window.location.href = "../selectRegister.html";
+}
+    </script>
   </body>
 </html>
