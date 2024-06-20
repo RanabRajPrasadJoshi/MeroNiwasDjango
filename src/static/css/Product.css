@@ -104,17 +104,17 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin: 40px 4vw;
+  margin: 60px 0;
+  justify-content: center;
   gap: 4vw;
 }
 
 .room-card{
   background: #c4d7d7;
-  padding: 1vw;
+  padding: 2vw;
   align-items: center;
   text-align: center;
   width: 200px;
-  height: 300px;
   border-radius: 10px;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
@@ -123,4 +123,66 @@
 .room-card img{
   aspect-ratio: 20 / 17;
   border-radius: 10px;
+}
+#loc{
+  overflow: hidden;
+  height: 20px;
+}
+.button {
+  background-color: #264452;
+  color: #aec2cb;
+  border: 2px solid #aec2cb;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  margin: auto;
+}
+
+.button p {
+  z-index: 1;
+}
+
+.button:hover {
+  color: #1b8fc3;
+  opacity: 60%;
+}
+
+.button:active {
+  border-color: #1b8fc3;
+}
+
+.button::after,
+.button::before {
+  content: "";
+  position: absolute;
+  width: 6em;
+  aspect-ratio: 1;
+  background: #70c3e9;
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.button::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+.button::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+.button:hover:before {
+  transform: translateX(-1em);
+}
+
+.button:hover:after {
+  transform: translateX(1em);
+}
+
+.button:active:before,
+.button:active:after {
+  background: #1b8fc3;
 }
