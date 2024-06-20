@@ -200,6 +200,7 @@ body {
   }
   .naav.active {
     left: 0;
+    position: absolute;
   }
 }
 

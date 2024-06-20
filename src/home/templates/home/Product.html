@@ -20,13 +20,15 @@
       <img src="/{{room.img}}" alt="Room Image"  width="170px"   />
       <div class="room-info">
         <h3>{{ room.title }}</h3>
-        <p>Location: {{ room.location }}</p>
-        <p>Description: {{ room.description }}</p>
-        <p>Price: ${{ room.price }}</p>
+        <p id="loc">Location: {{ room.location }}</p>
+        <p id="pricee">{{ room.price }}</p>
+        <button class="button" onclick="Show()">Buy Now</button>
       </div>
     </div>
     {% endfor %}
   </div>
 </main>
+
+<script></script>
 
 {% endblock %}
