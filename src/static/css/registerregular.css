@@ -17,7 +17,7 @@ main {
     max-width: 600px;
     text-align: center;
     top: 50vh;
-    margin-top: 10vh;
+    margin-top: 15vh;
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 1.75);
     -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 1.75);
     -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 1.75);
@@ -78,28 +78,6 @@ main {
   select {
     width: 100%;
   }
-  
-  .citizenship-container {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-  }
-  
-  .citizenship-container input {
-    width: 92%;
-  }
-  
-  @media (max-width: 600px) {
-    .citizenship-container {
-      flex-direction: column;
-    }
-  
-    .citizenship-container label,
-    .citizenship-container input {
-      margin: 5px 0;
-    }
-  }
-  
   button {
     padding: 0.75rem;
     border: none;
@@ -133,7 +111,7 @@ main {
   }
   @media (max-width: 517px) {
     body {
-      height: 190vh;
+      height: 170vh;
     }
     .container {
       width: 175vh;
@@ -161,7 +139,6 @@ main {
   }
   @media (max-width: 469px) {
     .container {
-      margin-top: 10vh;
       width: 150vw;
     }
     h2 {
@@ -180,9 +157,8 @@ main {
     input {
       height: 0.8rem;
     }
-    #profile-picture,
-    #citizenship-front,
-    #citizenship-back {
+    #profile-picture {
       font-size: 0.8rem;
     }
   }
+  

@@ -7,6 +7,24 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.button {
+  background-color: #264452;
+  color: #aec2cb;
+  border: 2px solid #aec2cb;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 0.5em;
+}
+
+.button:hover {
+  background-color: #aec2cb;
+  color: #264452;
+  border-color: #264452;
+  transition: 1.7s;
+}
+
 
 .contact-box,
 .contact-info {

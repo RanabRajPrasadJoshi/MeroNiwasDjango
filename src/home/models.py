@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -21,3 +22,17 @@ class Room(models.Model):
 
     def __str__(self):
         return self.title
+
+class UserProfile(models.Model):
+    user = models.CharField(max_length=255, null=False)
+    contact_number = models.CharField(max_length=15, null=False)
+    email = models.EmailField(max_length=254, null=False)
+    password = models.CharField(max_length=200, null=False)
+    gender = models.CharField(max_length=10, null=False)
+    profile_picture = models.ImageField(upload_to='static/uploadProfile', blank=True, null=True)
+    Citizen_front = models.ImageField(upload_to='static/UploadCitizen', blank=True, null=True)
+    Citizen_back = models.ImageField(upload_to='static/UploadCitizen', blank=True, null=True)
+    accountType = models.CharField(max_length=10, null=False)
+
+    def __str__(self):
+        return self.user

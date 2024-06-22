@@ -9,7 +9,9 @@ urlpatterns = [
    path('Product/', views.search, name='search'),
    path('Login/', views.show_login, name='login'),
    path('Register/', views.show_selectRegister, name='selectregister'),
-   path('RegisterBroker/', views.show_registerbroker, name='registerbroker'),
+   path('RegisterBroker/', views.show_registerBroker, name='registerbroker'),
+   path('RegisterRegular/', views.show_registerRegular, name='registerregular'),
+   path('LoginSuccess/', views.show_successLogin, name='successLogin'),
    
     
 ]

@@ -59,8 +59,12 @@
           <span class="bar"></span>
         </div>
       </nav>
+
     </header>
-    <div class="main">{% block main_content %} {% endblock %}</div>
+    <div class="main">
+      {% block main_content %} {% endblock %}
+    </div>
+
     <footer>
       <div class="footer-content">
         <div class="footer-section about">
@@ -95,12 +99,6 @@
     </footer>
 
     <script src="{% static 'js/script.js'%}">
-      function login() {
-  window.location.href = "";
-}
-function register() {
-  window.location.href = "../selectRegister.html";
-}
     </script>
   </body>
 </html>

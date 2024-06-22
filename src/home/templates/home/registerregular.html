@@ -1,7 +1,12 @@
-{% extends 'layout.html' %} {% load static %} {% load crispy_forms_tags %} {% block main_content %}
 
-<link rel="stylesheet" href="{% static 'css/registerbroker.css' %}">
+{% extends 'layout.html' %} {% load static%}{% load crispy_forms_tags %} {% block main_content %}
+
+
+<link rel="stylesheet" href="{%static 'css/registerregular.css'%}">
 <main>
+    <!-- <div class="containerSvg">
+        <img src="Assets/undraw_sign_up_n6im.svg" alt="loading" />
+      </div> -->
     <div class="container">
       <div class="logo-container">
         <img src="{% static 'Assets/logo.png'%}" alt="Mero Niwas Logo" class="logo1" />
@@ -10,7 +15,7 @@
         <h2>
           Register To
           <h2 id="txtt">Mero</h2>
-          <h2 id="txt1">Niwas</h2>
+          <h2 id="txt">Niwas</h2>
         </h2>
       </div>
       <form id="registration-form" enctype="multipart/form-data" method="POST">
@@ -43,38 +48,15 @@
           <option value="other">Other</option>
         </select>
 
-        <label for="profile-picture">Profile </label>
+        <label for="profile-picture">Profile Picture (Optional)</label>
         <input
           type="file"
           id="profile-picture"
           name="profile-picture"
           accept="image/*"
-          required
         />
-        <div class="citizenship-container">
-          <div class="c1">
-            <label for="citizenship-front">Citizenship Front</label>
-            <input
-              type="file"
-              id="citizenship-front"
-              name="citizenship-front"
-              accept="image/*"
-              required
-            />
-          </div>
-          <div class="c2">
-            <label for="citizenship-back">Citizenship Back</label>
-            <input
-              type="file"
-              id="citizenship-back"
-              name="citizenship-back"
-              accept="image/*"
-              required
-            />
-          </div>
-        </div>
 
-        <button type="submit">Register Broker User</button>
+        <button type="submit">Register Regular user</button>
         <div class="links">
           <a href="{% url 'login' %}">Already have account? Login now</a>
         </div>
@@ -84,8 +66,7 @@
       </form>
     </div>
 
-    <script src="JS/registerBroker.js"></script>
+    <script src="JS/registerRegular.js"></script>
 </main>
-
 
 {% endblock %}
