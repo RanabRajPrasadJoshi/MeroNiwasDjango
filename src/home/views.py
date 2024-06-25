@@ -48,12 +48,14 @@ def show_login(request):
             return HttpResponse("Email or Password Incorrect")
     return render(request, 'home/login.html')
 
+
+
 def generate_verification_code():
     return str(random.randint(100000, 999999))
 
-def send_verification_email(email, code):
-    subject = "Your Verification Code"
-    message = f"Your verification code is {code}."
+def send_verification_email(email, code , username):
+    subject = "Welcome to Mero Niwas - Verify Your Email"
+    message = f"Dear {username} ,Greetings from Mero Niwas! We're delighted to have you on board as part of our community, where finding your ideal home or room for rent is just a few clicks away.\n \n Once verified, you'll gain access to a wide range of rental options tailored to your preferences. Whether it's a cozy apartment or a spacious house, we've got you covered.\n \n Your Verification Code: {code}  \n \n Thank you for choosing Mero Niwas. We look forward to helping you find your perfect space! \n \n Warm regards, \n The Mero Niwas Team."
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
@@ -101,14 +103,13 @@ def show_registerBroker(request):
 
         # Generate verification code and send email
         verification_code = generate_verification_code()
-        send_verification_email(email, verification_code)
+        send_verification_email(email, verification_code, uname)
 
         # Temporarily store the user data in session
         request.session['registration_data'] = {
             'username': uname,
             'contact_number': contact_number,
             'email': email,
-            'password': password,
             'gender': gender,
             'profile_picture': profile_picture.name,
             'citizenship_front': Citizen_front.name,
@@ -143,7 +144,6 @@ def verify_emailbroker(request):
                 user=user,
                 contact_number=registration_data['contact_number'],
                 email=registration_data['email'],
-                password=registration_data['password'],
                 gender=registration_data['gender'],
                 profile_picture=registration_data['profile_picture'],
                 Citizen_front=registration_data['citizenship_front'],
@@ -194,14 +194,13 @@ def show_registerRegular(request):
 
         # Generate verification code and send email
         verification_code = generate_verification_code()
-        send_verification_email(email, verification_code)
+        send_verification_email(email, verification_code, uname)
 
         # Temporarily store the user data in session
         request.session['registration_data'] = {
             'username': uname,
             'contact_number': contact_number,
             'email': email,
-            'password': password,
             'gender': gender,
             'profile_picture': profile_picture.name if profile_picture else None,
             'accountType': accountType,
@@ -235,7 +234,6 @@ def verify_emailregular(request):
                 user=user,
                 contact_number=registration_data['contact_number'],
                 email=registration_data['email'],
-                password=registration_data['password'],
                 gender=registration_data['gender'],
                 profile_picture=registration_data['profile_picture'],
                 accountType=registration_data['accountType']

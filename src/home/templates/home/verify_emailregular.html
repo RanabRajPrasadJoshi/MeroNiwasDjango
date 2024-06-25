@@ -11,8 +11,10 @@
         <h2>Successfully Registered to MeroNiwwas</h2>
     <form method="post">
         {% csrf_token %}
-        <label for="verification_code">Verification Code:</label>
-        <input type="text" id="verification_code" name="verification_code" required>
+        <div class="connt">
+          <label for="verification_code">Verification Code:</label>
+          <input type="text" id="verification_code" name="verification_code" required>
+        </div>
         <button type="submit">Verify</button>
     </form>
       </div>
