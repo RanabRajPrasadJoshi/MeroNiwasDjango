@@ -12,6 +12,8 @@ urlpatterns = [
    path('RegisterBroker/', views.show_registerBroker, name='registerbroker'),
    path('RegisterRegular/', views.show_registerRegular, name='registerregular'),
    path('LoginSuccess/', views.show_successLogin, name='successLogin'),
+   path('verify_emailregular/', views.verify_emailregular, name='verify_emailregular'),
+   path('verify_emailbroker/', views.verify_emailbroker, name='verify_emailbroker'),
    
     
 ]
