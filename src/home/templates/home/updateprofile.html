@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block main_content %}
+<link rel="stylesheet" href="{% static 'css/registerregular.css' %}">
+<main>
+    <div class="container">
+        <div class="logo-container">
+            <img src="{% static 'Assets/logo.png' %}" alt="Mero Niwas Logo" class="logo1" />
+        </div>
+        <div class="brand">
+            <h2>
+                Update Profile
+            </h2>
+        </div>
+        <form id="update-profile-form" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}" required disabled />
+
+            <label for="contactnumber">Contact Number</label>
+            <input type="text" id="contactnumber" name="contactnumber" value="{{ user.userprofile.contact_number }}" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required />
+
+            <label for="password">Current Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <label for="new-password">New Password (Optional)</label>
+            <input type="password" id="new-password" name="new-password" />
+
+            <label for="confirm-new-password">Confirm New Password</label>
+            <input type="password" id="confirm-new-password" name="confirm-new-password" />
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male" {% if user.userprofile.gender == 'male' %}selected{% endif %}>Male</option>
+                <option value="female" {% if user.userprofile.gender == 'female' %}selected{% endif %}>Female</option>
+                <option value="other" {% if user.userprofile.gender == 'other' %}selected{% endif %}>Other</option>
+            </select>
+
+            <label for="profile-picture">Profile Picture (Optional)</label>
+            <input type="file" id="profile-picture" name="profile-picture" accept="image/*" />
+
+            {% if user.userprofile.profile_picture %}
+            <img src="{{ user.userprofile.profile_picture.url }}" alt="Current Profile Picture" width="150px" />
+            {% endif %}
+
+            <button type="submit">Update Profile</button>
+        </form>
+        <div class="links">
+            <a href="{% url 'home' %}">Back to home</a>
+        </div>
+    </div>
+</main>
+
+<script src="JS/registerRegular.js"></script>
+{% endblock %}

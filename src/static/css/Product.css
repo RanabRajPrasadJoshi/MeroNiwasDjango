@@ -6,7 +6,10 @@
   justify-content: center;
   align-items: center;
 }
-
+.main1{
+  display: flex;
+  justify-content: center;
+}
 .search-filter {
   display: flex;
   justify-content: center;
@@ -19,7 +22,21 @@
   display: flex;
   gap: 10px;
 }
-
+.product-detail{
+    width: 400px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 40px;
+    border: 2px solid #264452;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+}
 .category-area .btn-category {
   background-color: #264452;
   color: #aec2cb;

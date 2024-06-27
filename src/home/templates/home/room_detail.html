@@ -1,14 +1,21 @@
-{% extends 'layout.html' %} {% load static %} {% block main_content %}
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block main_content %}
 <link rel="stylesheet" href="{% static 'css/Product.css' %}" />
-<main>
-  <div class="room-detail">
-    <img src="/{{ room.img }}" alt="Room Image" width="300px" />
-    <div class="room-info">
-      <h2>{{ room.title }}</h2>
-      <p><strong>Location:</strong> {{ room.location }}</p>
-      <p><strong>Price:</strong> {{ room.price }}</p>
-      <p><strong>Description:</strong> {{ room.description }}</p>
-    </div>
+<div class="main1">
+  <div class="product-detail">
+    <h2>{{ room.title }}</h2>
+    <img src="/{{ room.img }}" alt="Room Image" width="300px" style="    border: 4px solid;
+    background: gray;
+    padding: 4px;" />
+    <p><strong>Location:</strong> {{ room.location }}</p>
+    <p><strong>Price:</strong> {{ room.price }}</p>
+    <p><strong>Description:</strong> {{ room.description }}</p>
+    <a href="#" class="button">Buy Now</a> <!-- Adjust this button/link as needed -->
   </div>
-</main>
+</div>
+
+<script></script>
+
 {% endblock %}

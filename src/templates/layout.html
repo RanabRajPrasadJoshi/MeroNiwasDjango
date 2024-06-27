@@ -34,7 +34,7 @@
         <div class="naav">
           <div class="nav">
             <h4 class="nav-item"><a href="{% url 'home' %}">Home</a></h4>
-            <h4 class="nav-item"><a href="{% url 'search' %}">Product</a></h4>
+            <h4 class="nav-item"><a href="{% url 'show_product' %}">Product</a></h4>
             <h4 class="nav-item">
               <a href="{% url 'ContactUs' %}">Contact us</a>
             </h4>
@@ -47,6 +47,7 @@
                   <div class="dropdown">
                     <button class="dropdown-toggle">Welcome, {{ user.username }}</button>
                     <div class="dropdown-menu">
+                      <a href="{% url 'profile' %}">
                       <button class="value">
                         <svg
                           viewBox="0 0 16 16"
@@ -60,6 +61,8 @@
                         </svg>
                         Profile
                       </button>
+                    </a>
+                    <a href="">
                       <button class="value">
                         <svg id="Line" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -75,6 +78,7 @@
                         </svg>
                         Account
                       </button>
+                    </a>
                       <button class="value">
                         <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -105,9 +109,6 @@
                     </a>
                     </div>
                 </div>
-                {% for userprofile in userprofiles %}
-                <img src="{{userprofile.profile_picture.url}}" alt="{{ user.username }}'s profile picture" class="profile-pic">
-                {% endfor %}
               </div>
              
           {% else %}

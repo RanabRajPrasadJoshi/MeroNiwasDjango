@@ -1,0 +1,53 @@
+
+{% extends 'layout.html' %} {% load static%}{% load crispy_forms_tags %} {% block main_content %}
+
+
+<link rel="stylesheet" href="{%static 'css/registerregular.css'%}">
+<main>
+    <!-- <div class="containerSvg">
+        <img src="Assets/undraw_sign_up_n6im.svg" alt="loading" />
+      </div> -->
+    <div class="container">
+      <div class="logo-container">
+        <img src="{% static 'Assets/logo.png'%}" alt="Mero Niwas Logo" class="logo1" />
+      </div>
+      <div class="brand">
+        <h2>
+          AddRooms To
+          <h2 id="txtt">Mero</h2>
+          <h2 id="txt">Niwas</h2>
+        </h2>
+      </div>
+      <form id="registration-form" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <label for="title">Title</label>
+        <input type="text" id="username" name="title" required />
+
+        <label for="price">Price </label>
+        <input type="number" id="contactnumber" name="price" required />
+
+        <label for="location">Location</label>
+        <input type="text" id="password" name="location" required />
+
+        <label for="description">Description</label>
+        <input type="text" id="password" name="description" required />
+
+        <label for="profile-picture">Room Picture</label>
+        <input
+          type="file"
+          id="profile-picture"
+          name="room-picture"
+          accept="image/*"
+          required
+        />
+        <button type="submit">Add To MeroNiwas</button>
+        <div class="links" id="back-to-home">
+          <a href="{% url 'home' %}">Back to home</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="JS/registerRegular.js"></script>
+</main>
+
+{% endblock %}
