@@ -1,0 +1,139 @@
+{% extends 'layout.html' %} {% load static%} {% block main_content %}
+<link rel="stylesheet" href="{%static 'css/home.css'%}" />
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Find your perfect home</h1>
+      <p>Your perfect home is our priority, make it your priority as well</p>
+      <div class="hero-buttons">
+        <button class="button">Talk To Agent</button>
+        <button class="button">See Our Contact</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="properties">
+    <h2>
+      Whether you’re buying or renting, we have a wide selection of properties
+      for you to choose from. Explore and find your dream home now.
+    </h2>
+    <div class="property-options">
+      <div class="property-card">
+        <img src="{% static 'Assets/Product1.jpeg'%}" alt="For Rent" />
+        <button class="button">For Rent</button>
+      </div>
+      <div class="property-card">
+        <img src="{% static 'Assets/Product2.jpeg' %}" alt="For Rent" />
+        <button class="button">For Rent</button>
+      </div>
+      <div class="property-card">
+        <img src="{% static 'Assets/Product3.jpeg'%}" alt="For Rent" />
+        <button class="button">For Rent</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="why-us">
+    <h2>Why choose us</h2>
+    <div class="features">
+      <div class="feature-row">
+        <div class="feature">
+          <img
+            src="{% static 'Assets/Whyproperties.jpeg'%}"
+            alt="Best properties in town"
+          />
+          <h3>Best properties in town</h3>
+          <p>
+            We are nothing if not passionate! Real estate is our pride and joy.
+            Let us use that passion to find you the perfect home you’ll feel
+            passionate about.
+          </p>
+        </div>
+        <div class="feature">
+          <img
+            src="{% static 'Assets/WhyPassion.png'%}"
+            alt="Passion for the work"
+          />
+          <h3>Passion for the work</h3>
+          <p>
+            We are nothing if not passionate! Real estate is our pride and joy.
+            Let us use that passion to find you the perfect home you’ll feel
+            passionate about.
+          </p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature">
+          <img src="{% static 'Assets/Why3.jpeg'%}" alt="Top tier realtors" />
+          <h3>Top tier realtors</h3>
+          <p>
+            We are nothing if not passionate! Real estate is our pride and joy.
+            Let us use that passion to find you the perfect home you’ll feel
+            passionate about.
+          </p>
+        </div>
+        <div class="feature">
+          <img src="{% static 'Assets/Why4.jpg'%}" alt="Personal dedication" />
+          <h3>Personal dedication</h3>
+          <p>
+            We are nothing if not passionate! Real estate is our pride and joy.
+            Let us use that passion to find you the perfect home you’ll feel
+            passionate about.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="solutions">
+    <h2>We have solutions for you</h2>
+    <div class="solutions-options">
+      <div class="solution">
+        <img
+          src="https://images.pexels.com/photos/3646194/pexels-photo-3646194.jpeg"
+          alt="For sellers"
+        />
+        <h3>For sellers</h3>
+        <p>
+          Looking to sell your home but don’t want to waste time or compromise
+          on price? Haus group specializes in selling properties, finding you
+          the best buyer in no time.
+        </p>
+      </div>
+      <div class="solution">
+        <img
+          src="https://images.pexels.com/photos/259098/pexels-photo-259098.jpeg"
+          alt="For landlords"
+        />
+        <h3>For landlords</h3>
+        <p>
+          Renting out your property shouldn’t be hard. Find the perfect tenant
+          and protect your investment without your property remaining vacant for
+          a long period of time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="about-us">
+    <h2>About Us</h2>
+    <p>
+      Founded in 2010, Haus group, an innovative real estate firm, operating
+      under the permission of the Ministry of Economy, specializes in pairing
+      dedicated agents with real estate clients to offer a unique experience.
+    </p>
+    <img
+      src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"
+      alt="About Us"
+    />
+  </section>
+</main>
+{% endblock %}

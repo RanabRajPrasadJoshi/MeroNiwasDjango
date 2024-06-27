@@ -1,7 +1,7 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.http import JsonResponse
 from . models import *
 import random
@@ -13,7 +13,10 @@ def index(request):
     return render(request, 'home/index.html')
 
 def show_product(request):
+    
     return render(request, 'home/index.html')
+
+
 
 def show_contactus(request):
     return render(request, 'home/ContactUs.html')
@@ -39,15 +42,18 @@ def show_login(request):
             login(request,user)
             user_profile = UserProfile.objects.get(user=user) 
             if user_profile.accountType == "regular":
-                return HttpResponse("Login Regular")
+                return redirect("/")
             if user_profile.accountType == "broker":
-                return HttpResponse("Login Broker")
+                return redirect('/Product')
             else:
                 return HttpResponse("Error login")
         else:
             return HttpResponse("Email or Password Incorrect")
     return render(request, 'home/login.html')
 
+def show_logout(request):
+    logout(request)
+    return redirect('/')
 
 
 def generate_verification_code():
@@ -112,6 +118,7 @@ def show_registerBroker(request):
             'email': email,
             'gender': gender,
             'profile_picture': profile_picture.name,
+            'password':password,
             'citizenship_front': Citizen_front.name,
             'citizenship_back': Citizen_back.name,
             'accountType': accountType,
@@ -203,6 +210,7 @@ def show_registerRegular(request):
             'email': email,
             'gender': gender,
             'profile_picture': profile_picture.name if profile_picture else None,
+            'password':password,
             'accountType': accountType,
             'verification_code': verification_code,
         }

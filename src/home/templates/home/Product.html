@@ -17,13 +17,13 @@
   <div class="room-listings">
     {% for room in rooms %}
     <div class="room-card">
-      <img src="/{{room.img}}" alt="Room Image"  width="170px"   />
-      <div class="room-info">
-        <h3>{{ room.title }}</h3>
-        <p id="loc">Location: {{ room.location }}</p>
-        <p id="pricee">{{ room.price }}</p>
-        <button class="button" onclick="Show()">Buy Now</button>
-      </div>
+        <img src="/{{room.img}}" alt="Room Image" width="170px" />
+        <div class="room-info">
+          <h3>{{ room.title }}</h3>
+          <p id="loc">Location: {{ room.location }}</p>
+          <p id="pricee">{{ room.price }}</p>
+          <button class="button">Buy Now</button>
+        </div>
     </div>
     {% endfor %}
   </div>

@@ -1,0 +1,14 @@
+{% extends 'layout.html' %} {% load static %} {% block main_content %}
+<link rel="stylesheet" href="{% static 'css/Product.css' %}" />
+<main>
+  <div class="room-detail">
+    <img src="/{{ room.img }}" alt="Room Image" width="300px" />
+    <div class="room-info">
+      <h2>{{ room.title }}</h2>
+      <p><strong>Location:</strong> {{ room.location }}</p>
+      <p><strong>Price:</strong> {{ room.price }}</p>
+      <p><strong>Description:</strong> {{ room.description }}</p>
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %} {% load static%} {% block main_content %}
+
+<link rel="stylesheet" href="{% static 'css/verify_emailregular.css' %}">
+<main>
+    <div class="container">
+      <div class="brand">
+        <div class="brandname">
+          <h2 id="txtt">Mero</h2>
+          <h2 id="txt1">Niwas</h2>
+        </div>
+        <h2>Successfully Registered to MeroNiwwas</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="connt">
+          <label for="verification_code">Verification Code:</label>
+          <input type="text" id="verification_code" name="verification_code" required>
+        </div>
+        <button type="submit">Verify</button>
+    </form>
+      </div>
+      
+        <a href="{% url 'login' %}"><button>Login Now</button></a>
+      
+      <div class="links" id="back-to-home">
+        <a href="{% url 'home' %}">Back to home</a>
+      </div>
+    </div>
+    <script src="JS/selectRegister.js"></script>
+</main>
+
+
+{% endblock %}

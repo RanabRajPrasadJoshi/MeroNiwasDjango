@@ -14,6 +14,7 @@ urlpatterns = [
    path('LoginSuccess/', views.show_successLogin, name='successLogin'),
    path('verify_emailregular/', views.verify_emailregular, name='verify_emailregular'),
    path('verify_emailbroker/', views.verify_emailbroker, name='verify_emailbroker'),
+   path('logout/', views.show_logout, name='logout'),
    
     
 ]
