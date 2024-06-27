@@ -105,8 +105,9 @@
                     </a>
                     </div>
                 </div>
-                <img src="{{ user_profile.profile_picture.url }}" alt="{{ user.username }}'s profile picture" class="profile-pic">
-                 
+                {% for userprofile in userprofiles %}
+                <img src="{{userprofile.profile_picture.url}}" alt="{{ user.username }}'s profile picture" class="profile-pic">
+                {% endfor %}
               </div>
              
           {% else %}

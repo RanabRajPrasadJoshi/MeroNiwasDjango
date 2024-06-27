@@ -11,6 +11,9 @@
         {% endfor %}
       </select>
       <button type="submit">Search</button>
+      {% if userprofile.accountType == 'broker' %}
+      <a href="{% url 'add_product' %}" class="btn btn-primary">Add Product</a>
+      {% endif %}
     </form>
   </div>
 

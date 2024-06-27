@@ -7,6 +7,7 @@ from . models import *
 import random
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -271,3 +272,4 @@ def search(request):
     categories = Category.objects.all()
 
     return render(request, 'home/Product.html', {'rooms': rooms, 'categories': categories})
+

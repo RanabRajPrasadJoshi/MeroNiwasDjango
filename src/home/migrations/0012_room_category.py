@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='room',
             name='category',
-            field=models.ForeignKey(default='HOME', on_delete=django.db.models.deletion.CASCADE, to='home.category'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='home.category'),
             preserve_default=False,
         ),
     ]
