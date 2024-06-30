@@ -1,64 +1,156 @@
-
-
 {% extends 'layout.html' %}
-{% load static%}
+{% load static %}
 
 {% block main_content %}
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" sintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Product Page</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eaeaea;
+        }
+        
+    
+        .container1 {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .left-column {
+            flex: 1;
+            text-align: center;
+        }
+        .left-column img {
+            width: 80%;
+        }
+        .right-column {
+            flex: 2;
+            padding-left: 20px;
+        }
+        .product-title {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+        .product-rating {
+            margin: 10px 0;
+            color: #ffa41c;
+        }
+        .product-price {
+            font-size: 28px;
+            color: #b12704;
+        }
+        .product-details {
+            margin: 20px 0;
+            color: #565959;
+        }
+        .add-to-cart {
+            background-color: #ffa41c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .add-to-cart:hover {
+            background-color: #e59300;
+        }
+        .end{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-<div class="container">
-    <div class="row d-flex justify-content-center " style="margin: 30px;">
-        <div class="col-md-10">
+.end a {
+    text-decoration: none;
+    color: inherit;
+}
 
-            <h2 class="text-center text-muted">All Rooms </h2>
-            {% for msg in messages %}
-            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
-            <div class="alert alert-success">
-                {{msg}}
-            </div>
-            {% endif %}
-            
-            {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
-            <div class="alert alert-danger">
-                {{ msg }}
-            </div>
-            {% endif %}
-            {% endfor%}
-            <table class="table table-bordered">
-                <tr class="table">
-                    <th>Title</th>
-                    <th>Location</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                </tr>
-                {% for room in rooms %}
-                <tr>
-                    <td>{{room.title}}</td>
-                    <td>{{room.location}}</td>
-                    <td>{{room.price}}</td>
-                    <td>{{room.description}}</td>
-                    <td>
-                        <img src="/{{room.img}}" alt="image" width="200px">
-                    </td>
-                    <td>
-                    <a href="{% url 'updateproduct' room.id%}"><i class="fas fa-pen-square fs-2 text-warning"></i></a>
-                        &nbsp; &nbsp;
-                        <a href="{% url 'deleteProduct' room.id%}"><i class="fas fa-trash-alt fs-2 text-danger" onclick="return confirm('Are You Sure Want to Delete This Product ?')"></i></a>
-                    </td>
-                </tr>
+.end i {
+    font-size: 40px;
+}
+
+.text-warning {
+    color: #ffc107;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.end a:hover .text-warning,
+.end a:hover .text-danger {
+    opacity: 0.7; /* Slightly fade the icon on hover */
+}
+.alert{
+    color: lime;
+    background: gray;
+    padding: 10px 180px;
+
+}
+.msg{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+
+    </style>
+</head>
+<body>
+    {% for msg in messages %}
+    <div class="msg">
+                    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert" style="color: lime;">
+                            {{ msg }}
+                        </div>
+                    {% endif %}
+                    {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <div class="alert" style="color: red;">
+                            {{ msg }}
+                        </div>
+                    {% endif %}
+                </div>
                 {% endfor %}
-            </table>
+    <div class="container1">
+        {% for room in rooms %}
+        <div class="left-column">
+            <img src="/{{ room.img }}" alt="Product Image">
         </div>
+        <div class="right-column">
+            <h1 class="product-title">Title: {{ room.title }}</h1>
+            <div class="product-details">
+                <p>Location: {{ room.location }}</p>
+                <p>Description: {{ room.description }}</p>
+            </div>
+            <div class="product-price"> Price: {{ room.price }}</div>
+            
+        </div>
+        <div class="end">
+        <a href="{% url 'updateproduct' room.id %}"><i class="fas fa-pen-square fs-2 text-warning"></i></a>
+        &nbsp; &nbsp;
+        <a href="{% url 'deleteProduct' room.id %}"><i class="fas fa-trash-alt fs-2 text-danger" onclick="return confirm('Are You Sure Want to Delete This Product?')"></i></a>
     </div>
-</div>
+    {% endfor %}
+    </div>
 
-<!-- <h2>This is our home page</h2>
-<img src="{% static 'img/laptop3..jpg'%}" alt="" width="200px"> -->
+   
+</body>
+</html>
+
 {% endblock %}
