@@ -25,9 +25,13 @@
             max-width: 1200px;
             margin: 20px auto;
             display: flex;
+            flex-direction: column;
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .connt{
+            display: flex;
         }
         .left-column {
             flex: 1;
@@ -129,6 +133,7 @@
                 {% endfor %}
     <div class="container1">
         {% for room in rooms %}
+        <div class="connt">
         <div class="left-column">
             <img src="/{{ room.img }}" alt="Product Image">
         </div>
@@ -139,13 +144,13 @@
                 <p>Description: {{ room.description }}</p>
             </div>
             <div class="product-price"> Price: {{ room.price }}</div>
-            
         </div>
         <div class="end">
-        <a href="{% url 'updateproduct' room.id %}"><i class="fas fa-pen-square fs-2 text-warning"></i></a>
-        &nbsp; &nbsp;
-        <a href="{% url 'deleteProduct' room.id %}"><i class="fas fa-trash-alt fs-2 text-danger" onclick="return confirm('Are You Sure Want to Delete This Product?')"></i></a>
-    </div>
+            <a href="{% url 'updateproduct' room.id %}"><i class="fas fa-pen-square fs-2 text-warning"></i></a>
+            &nbsp; &nbsp;
+            <a href="{% url 'deleteProduct' room.id %}"><i class="fas fa-trash-alt fs-2 text-danger" onclick="return confirm('Are You Sure Want to Delete This Product?')"></i></a>
+        </div>
+    </div>   
     {% endfor %}
     </div>
 

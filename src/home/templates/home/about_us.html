@@ -1,0 +1,147 @@
+{% extends 'layout.html' %} {% load static%} {% block main_content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'Assets/logo.png'%}" type="image/x-icon">
+    <title>About Us - Mero Niwas</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .about-section {
+            margin: 20px;
+            background-color: #fff;
+            padding: 40px 0;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .about-content h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .team-section {
+            background-color: #f0f0f0;
+            padding: 40px 0;
+        }
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .team-member {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            max-width: 300px;
+            width: 100%;
+        }
+        .team-member img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .team-member h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .team-member p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .team-member img{
+            width: 180px;
+            height: 180px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h1>About Us</h1>
+                <p>Welcome to Mero Niwas, your go-to source for all things home decor. We're dedicated to providing you the very best of products, with an emphasis on quality, customer service, and uniqueness.</p>
+                <p>Founded in 2020 by John Doe, Mero Niwas has come a long way from its beginnings in a small apartment. When John first started out, his passion for elegant home decor drove him to start his own business.</p>
+                <p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
+                <p>Sincerely,<br> The Mero Niwas Team</p>
+            </div>
+        </div>
+    </section>
+    <hr class="section-divider" />
+    <section class="team-section">
+        <div class="container">
+            <h2 style="justify-content: center;
+            display: flex;
+            margin: 30px;">Our Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="{% static 'Assets/12.png' %}" alt="Team Member 1">
+                    <h3>Pratik</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'Assets/12.png' %}" alt="Team Member 2">
+                    <h3>Adarsh</h3>
+                    <p>Marketing Manager</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'Assets/12.png' %}" alt="Team Member 3">
+                    <h3>Abizeet</h3>
+                    <p>Customer Support</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'Assets/12.png' %}" alt="Team Member 4">
+                    <h3>Bishal</h3>
+                    <p>Product Designer</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'Assets/12.png' %}" alt="Team Member 4">
+                    <h3>Dhiraj</h3>
+                    <p>Product Designer</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'Assets/12.png' %}" alt="Team Member 4">
+                    <h3>Sunil</h3>
+                    <p>Product Designer</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'Assets/Why4.jpg' %}" alt="Team Member 4">
+                    <h3>Ranab</h3>
+                    <p>Leader-Programmer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+</body>
+</html>
+
+{% endblock%}

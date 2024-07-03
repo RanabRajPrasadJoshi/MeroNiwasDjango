@@ -18,6 +18,8 @@ def show_contactus(request):
     return render(request, 'home/ContactUs.html')
 def show_successLogin(request):
     return render(request, 'home/LoginSuccess.html')
+def show_aboutUs(request):
+    return render(request, 'home/about_us.html')
 
 def show_selectRegister(request):
     return render(request, 'home/selectregister.html')

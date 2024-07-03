@@ -38,7 +38,7 @@
             <h4 class="nav-item">
               <a href="{% url 'ContactUs' %}">Contact us</a>
             </h4>
-            <h4 class="nav-item"><a href="#">About us</a></h4>
+            <h4 class="nav-item"><a href="{% url 'about_us' %}">About us</a></h4>
           </div>
 
           {% if user.is_authenticated %}
@@ -151,9 +151,9 @@
           <h3>Quick Links</h3>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Product</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="{% url 'show_product' %}">Product</a></li>
+            <li><a href="{% url 'ContactUs'%}">Contact Us</a></li>
+            <li><a href="{% url 'about_us' %}">About Us</a></li>
           </ul>
         </div>
         <div class="footer-section social">
