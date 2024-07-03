@@ -1,0 +1,142 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Details</title>
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #2b2b2b;
+      --card: #ffffff;
+      --card-foreground: #2b2b2b;
+      --popover: #ffffff;
+      --popover-foreground: #2b2b2b;
+      --primary: #1a1a1a;
+      --primary-foreground: #f8f8f8;
+      --secondary: #f4f4f4;
+      --secondary-foreground: #1a1a1a;
+      --muted: #f4f4f4;
+      --muted-foreground: #767676;
+      --accent: #f4f4f4;
+      --accent-foreground: #1a1a1a;
+      --destructive: #d9534f;
+      --destructive-foreground: #f8f8f8;
+      --border: #e6e6e6;
+      --input: #e6e6e6;
+      --ring: #1a1a1a;
+      --radius: 0.5rem;
+    }
+    
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 20px;
+      background: var(--card);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: var(--radius);
+    }
+    
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .price {
+      color: var(--muted-foreground);
+      margin-bottom: 20px;
+    }
+    
+    .flex {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .image {
+      width: 66.67%;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .contact-info {
+      width: 33.33%;
+    }
+    
+    .contact-info h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .contact-info ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .contact-info ul li {
+      margin-bottom: 8px;
+    }
+    
+    .button {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 10px 15px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+    
+    .location, .description {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .description-text {
+      color: var(--muted-foreground);
+      width: 60%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">{{ room.title }}</h2>
+    <p class="price">Rs. {{ room.price }} / Month</p>
+    
+    <div class="flex">
+      <img src="{% static room.img %}" alt="Property Image" class="image">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <ul>
+          <li>Contact Name: {{ room.user }}</li>
+          <li>Email Address: {{ room.email }}</li>
+          <li>Phone Number: {{ room.contact_number }}</li>
+        </ul>
+        <button class="button">Send Request/Order now</button>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="location">Location: {{ room.location }}</h3>
+      <h3 class="description">Description</h3>
+      <p class="description-text">{{ room.description }}</p>
+    </div>
+  </div>
+</body>
+</html>
+
+{% endblock %}

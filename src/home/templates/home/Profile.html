@@ -3,17 +3,59 @@
 
 {% block main_content %}
 <link rel="stylesheet" href="{% static 'css/Product.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+  .end a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .end i {
+    font-size: 40px;
+  }
+
+  .text-warning {
+    color: #ffc107;
+  }
+
+  .text-danger {
+    color: #dc3545;
+  }
+
+  .end a:hover .text-warning,
+  .end a:hover .text-danger {
+    opacity: 0.7; /* Slightly fade the icon on hover */
+  }
+</style>
+
 <div class="main1">
   <div class="product-detail">
     {% if user_profile.profile_picture %}
-    <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
+      <img src="{% static 'uploadProfile/' %}{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
     {% else %}
-    <p>No profile picture available</p>
+      <p>No profile picture added</p>
     {% endif %}
+    
     <h2>{{ user_profile.user }}</h2>
     <p><strong>Contact Number:</strong> {{ user_profile.contact_number }}</p>
     <p><strong>Email:</strong> {{ user_profile.email }}</p>
     <p><strong>Gender:</strong> {{ user_profile.gender }}</p>
+    <p><strong>Account type:</strong> {{ user_profile.accountType }}</p>
+
+    {% if user_profile.Citizen_front %}
+    Citizen_front:
+      <img src="{% static 'uploadProfile/' %}{{ user_profile.Citizen_front.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
+      {% endif %}
+    {% if user_profile.Citizen_back %}
+    Citizen_back:
+      <img src="{% static 'uploadProfile/' %}{{ user_profile.Citizen_back.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
+      {% endif %}
+    
+    <div class="end">
+      <a href=""><i class="fas fa-pen-square fs-2 text-warning"></i></a>
+    </div>
   </div>
 </div>
 {% endblock %}
+

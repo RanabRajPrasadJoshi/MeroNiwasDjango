@@ -16,8 +16,10 @@ def index(request):
 
 def show_contactus(request):
     return render(request, 'home/ContactUs.html')
+
 def show_successLogin(request):
     return render(request, 'home/LoginSuccess.html')
+
 def show_aboutUs(request):
     return render(request, 'home/about_us.html')
 
@@ -52,7 +54,6 @@ def show_login(request):
 def show_logout(request):
     logout(request)
     return redirect('/')
-
 
 def generate_verification_code():
     return str(random.randint(100000, 999999))
@@ -255,8 +256,6 @@ def verify_emailregular(request):
 
     return render(request, 'home/verify_emailregular.html')
 
-
-
 def show_product(request):
     rooms = Room.objects.all()
 
@@ -281,6 +280,9 @@ def show_AddProduct(request):
         description = request.POST.get("description").strip()
         img = request.FILES.get('room-picture')
         user = request.user.username
+        user_profile = UserProfile.objects.get(user=user) 
+        contact_number = user_profile.contact_number
+        email = user_profile.email
 
         if not title or not price or not location or not description:
             return HttpResponse("Please fill in all fields. Some fields are empty or only contain spaces.")
@@ -296,7 +298,9 @@ def show_AddProduct(request):
             price=price,
             location=location,
             description=description,
-            img=img
+            img=img,
+            email=email,
+            contact_number=contact_number
         )
         room.save()
         messages.add_message(request, messages.SUCCESS, 'Room Added successfully')
@@ -313,7 +317,6 @@ def show_MyProduct(request):
 
     return render(request, 'home/MyProduct.html', {'rooms': rooms})
 
-
 def show_updateProduct(request, room_id):
     instance = get_object_or_404(Room, id=room_id)
     
@@ -325,8 +328,8 @@ def show_updateProduct(request, room_id):
         img = request.FILES.get('room-picture')
 
         if not title or not price or not location or not description:
-            messages.add_message(request, messages.ERROR, "Please fill in all fields. Some fields are empty or only contain spaces.")
-        else:
+            None
+        if True:
             instance.title = title
             instance.price = price
             instance.location = location
@@ -346,18 +349,15 @@ def show_updateProduct(request, room_id):
     
     return render(request, 'home/UpdateProduct.html', {'room': instance})
 
-
 def show_deleteProduct(request, room_id):
       instance = Room.objects.get(id=room_id)
       instance.delete()
       messages.add_message(request, messages.SUCCESS, "Product Deleted successfully")
       return redirect('MyProduct')
 
-
 def product_detail(request, room_id):
     room = get_object_or_404(Room, id=room_id)
     return render(request, 'home/room_detail.html', {'room': room})
-
 
 def show_profile(request):
     if request.user.is_authenticated:
@@ -371,56 +371,3 @@ def show_profile(request):
     
     return render(request, 'home/Profile.html', {})
 
-
-
-@login_required
-def update_profile(request):
-    if request.method == 'POST':
-        password = request.POST.get('password')
-        new_password = request.POST.get('new-password')
-        confirm_new_password = request.POST.get('confirm-new-password')
-        contact_number = request.POST.get('contactnumber')
-        email = request.POST.get('email')
-        gender = request.POST.get('gender')
-        profile_picture = request.FILES.get('profile-picture')
-
-        user = request.user
-
-        # Check if the provided password is correct
-        if not user.check_password(password):
-            messages.error(request, 'Incorrect password. Please try again.')
-            return redirect('update_profile')  # Redirect back to update profile page
-
-        try:
-            # Retrieve UserProfile associated with the User
-            user_profile = user.userprofile
-        except UserProfile.DoesNotExist:
-            messages.error(request, 'User profile does not exist.')
-            return redirect('update_profile')  # Redirect back to update profile page
-
-        # Update UserProfile fields
-        user_profile.contact_number = contact_number
-        user_profile.gender = gender
-        if profile_picture:
-            user_profile.profile_picture = profile_picture
-        user_profile.save()
-
-        # Update User email if changed
-        if user.email != email:
-            user.email = email
-            user.save()
-
-        # Change password if new password is provided
-        if new_password:
-            if new_password != confirm_new_password:
-                messages.error(request, 'New passwords do not match. Please try again.')
-                return redirect('updateprofile')  # Redirect back to update profile page
-            
-            user.set_password(new_password)
-            user.save()
-            update_session_auth_hash(request, user)  # Update session with new password hash
-
-        messages.success(request, 'Profile updated successfully.')
-        return redirect('Profile')  # Redirect to profile view or home after successful update
-
-    return render(request, 'home/updateprofile.html', {'user': request.user})
