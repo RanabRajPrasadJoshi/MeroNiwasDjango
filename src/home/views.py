@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 def index(request):
@@ -51,6 +52,7 @@ def show_login(request):
             return HttpResponse("Email or Password Incorrect")
     return render(request, 'home/login.html')
 
+@login_required
 def show_logout(request):
     logout(request)
     return redirect('/')
@@ -327,8 +329,6 @@ def show_updateProduct(request, room_id):
         description = request.POST.get("description").strip()
         img = request.FILES.get('room-picture')
 
-        if not title or not price or not location or not description:
-            None
         if True:
             instance.title = title
             instance.price = price
@@ -359,6 +359,7 @@ def product_detail(request, room_id):
     room = get_object_or_404(Room, id=room_id)
     return render(request, 'home/room_detail.html', {'room': room})
 
+@login_required
 def show_profile(request):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -371,3 +372,164 @@ def show_profile(request):
     
     return render(request, 'home/Profile.html', {})
 
+@login_required
+def update_profile(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    print(user.username)
+    
+    if request.method == 'POST':
+        # Get POST data
+        username = request.POST.get('username')
+        contactnumber = request.POST.get('contactnumber')
+        email = request.POST.get('email')
+        gender = request.POST.get('gender')
+        profile_picture = request.FILES.get('profile-picture')
+        Citizen_front = request.FILES.get('Citizen_front')
+        Citizen_back = request.FILES.get('Citizen_back')
+
+        # Update User model fields
+        user.username = username
+        user.email = email
+
+        # Update UserProfile model fields
+
+        user_profile.user = username
+        user_profile.contact_number = contactnumber
+        user_profile.email = email
+        user_profile.gender = gender
+        if profile_picture:
+            user_profile.profile_picture = profile_picture
+        if Citizen_front and user_profile.accountType == 'broker':
+            user_profile.Citizen_front = Citizen_front
+        if Citizen_back and user_profile.accountType == 'broker':
+            user_profile.Citizen_back = Citizen_back
+
+        # Save both models
+        user.save()
+        user_profile.save()
+
+        return redirect('profile')  # Redirect to a success page or profile view
+    else:
+        context = {
+            'user_profile': user_profile,
+        }
+        return render(request, 'home/updateprofile.html', context)
+    
+@login_required
+def PasswordReset(request):
+    if request.method == 'POST':
+        # Get POST data
+        currentPassword = request.POST.get('oldpassword')
+        newPassword = request.POST.get('newpassword')
+        confirmNewPassword = request.POST.get('Conformnewpassword')
+
+        user = request.user
+
+        if newPassword != confirmNewPassword:
+            return HttpResponse("New Password and Confirm New Password must be the same")
+
+        if not user.check_password(currentPassword):
+            return HttpResponse("Current password is incorrect")
+
+        # Set the new password
+        user.set_password(newPassword)
+        user.save()
+
+        # Update session to prevent logout
+        update_session_auth_hash(request, user)
+
+        return HttpResponse("Password successfully updated")
+
+    return render(request, 'home/PasswordReset.html')
+
+def send_verification_password(email, code , username):
+    subject = "Welcome to Mero Niwas - Verify Your Email"
+    message = f"Is you username {username}, Then Your Password reset code is {code}"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+
+
+def show_ForgetPassword(request):
+    if request.method == 'POST':
+        # Get POST data
+        email = request.POST.get('email')
+        print(email)
+        if not email:
+            return HttpResponse("Please fill in all fields. Some fields are empty or only contain spaces.")
+        try:
+            user_profile = UserProfile.objects.get(email=email)
+        except UserProfile.DoesNotExist:
+            return HttpResponse("No user with this email address exists.")
+        
+        verification_code = generate_verification_code()
+        send_verification_password(email, verification_code, user_profile.user)
+
+        # Temporarily store the user data in session
+        request.session['registration_data'] = {
+            'email': email,
+            'verification_code': verification_code,
+        }
+
+        # Redirect to verification page
+        return redirect('/VerifyPassword')
+        
+    return render(request, 'home/ForgetPassword.html')
+
+
+def VerifyPassword(request):
+    if request.method == 'POST':
+        input_code = request.POST.get("verification_code").strip()
+        registration_data = request.session.get('registration_data')
+
+        if not registration_data:
+            return HttpResponse("Session expired. Please register again.")
+
+        if input_code == registration_data['verification_code']:
+            return redirect('/ChangePassword')
+        else:
+            return HttpResponse("Invalid verification code.")
+
+    return render(request, 'home/VerifyPassword.html')
+
+def ChangePassword(request):
+    if request.method == 'POST':
+        new_password = request.POST.get('newpassword')
+        confirm_password = request.POST.get('Conformnewpassword')
+        registration_data = request.session.get('registration_data')
+
+        if not registration_data:
+            return HttpResponse("Session expired. Please try again.")
+
+        if new_password != confirm_password:
+            return HttpResponse("Passwords do not match.")
+
+        try:
+            # Retrieve user by email (assuming email is stored in registration_data)
+            user = User.objects.get(email=registration_data['email'])
+
+            # Print debug information
+            print("Changing password for user:", user.username)
+            print("New Password:", new_password)
+
+            # Set new password and save user
+            user.set_password(new_password)
+            user.save()
+
+            update_session_auth_hash(request, user)
+
+            # Optionally print the updated password (hashed) for verification
+            print("Updated Password (hashed):", user.password)
+
+            return HttpResponse("Password changed successfully. You can now log in.")
+        
+        except User.DoesNotExist:
+            return HttpResponse("User not found.")
+        
+        except Exception as e:
+            # Print or log any other exceptions that may occur
+            print("Error:", e)
+            return HttpResponse("An error occurred while changing the password.")
+
+    return render(request, 'home/PasswordForget.html')

@@ -32,7 +32,7 @@
 <div class="main1">
   <div class="product-detail">
     {% if user_profile.profile_picture %}
-      <img src="{% static 'uploadProfile/' %}{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
+      <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="300px" height="300px" style="border: 4px solid; background: gray; padding: 4px;" />
     {% else %}
       <p>No profile picture added</p>
     {% endif %}
@@ -42,18 +42,19 @@
     <p><strong>Email:</strong> {{ user_profile.email }}</p>
     <p><strong>Gender:</strong> {{ user_profile.gender }}</p>
     <p><strong>Account type:</strong> {{ user_profile.accountType }}</p>
-
+<div class="citizen" style="display: flex; flex-direction: column;">
     {% if user_profile.Citizen_front %}
     Citizen_front:
-      <img src="{% static 'uploadProfile/' %}{{ user_profile.Citizen_front.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
+      <img src="{{ user_profile.Citizen_front.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
       {% endif %}
     {% if user_profile.Citizen_back %}
     Citizen_back:
-      <img src="{% static 'uploadProfile/' %}{{ user_profile.Citizen_back.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
-      {% endif %}
     
+      <img src="{{ user_profile.Citizen_back.url }}" alt="Profile Picture" width="300px" style="border: 4px solid; background: gray; padding: 4px;" />
+      {% endif %}
+    </div>
     <div class="end">
-      <a href=""><i class="fas fa-pen-square fs-2 text-warning"></i></a>
+      <a href="{% url 'update_profile' %}"><i class="fas fa-pen-square fs-2 text-warning"></i></a>
     </div>
   </div>
 </div>

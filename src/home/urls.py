@@ -23,6 +23,11 @@ urlpatterns = [
    path('product/<int:room_id>/', views.product_detail, name='product_detail'),
    path('updateproduct/<int:room_id>', views.show_updateProduct, name="updateproduct"),
    path('deleteProduct/<int:room_id>', views.show_deleteProduct, name="deleteProduct"),
+   path('Profile/update/', views.update_profile, name='update_profile'),
+   path('Profile/PasswordReset/', views.PasswordReset, name='PasswordReset'),
+   path('ForgetPassword/', views.show_ForgetPassword, name='ForgetPassword'),
+   path('VerifyPassword/', views.VerifyPassword, name='VerifyPassword'),
+   path('ChangePassword/', views.ChangePassword, name='ChangePassword'),
    
     
 ]
